@@ -1,0 +1,70 @@
+tenho arquivo csv, no seguinte formato:
+
+Conteúdo do Arquivo csv:
+
+#	Título	Descrição	Últimas notas
+
+
+153780	[SANTANDER] [SAC] [TICKET 23904092/REDMINE 153780] YS - EXCLUSÃO DE OPERAÇÃO	Excluir a operação de devolução antecipada conforme anexo.	Script executado
+153755	[SANTANDER] [SAC] [TICKET 23901704/REDMINE 153755] WH [4420] Ajuste Strikes 23/06 	"Por favor, ajustar os strikes das opções em anexo.
+Data: 23/06"	Script executado.
+153717	[SANTANDER] [SAC] [TICKET 23896960/REDMINE 153717] - [4418] - Script para desbloqueio de ações - BASE ASSET 	"Por gentileza rodar script para que as posições dos Fundos permaneçam conforme abaixo:
+ 
+1164
+JBSS32
+Qtd Disponível: 166.400
+Qtd Bloqueada: 0
+Qtd Total: 166.400
+1216
+JBSS32
+Qtd Disponível: 66.000
+Qtd Bloqueada: 0
+Qtd Total: 66.000
+1872
+JBSS32
+Qtd Disponível: 15.000
+Qtd Bloqueada: 0
+Qtd Total: 15.000
+2002
+JBSS32
+Qtd Disponível: 3.705
+Qtd Bloqueada: 0
+Qtd Total: 3.705
+4589
+JBSS32
+Qtd Disponível: 74.400
+Qtd Bloqueada: 0
+Qtd Total: 74.400
+NFSB1155
+JBSS32
+Qtd Disponível: 3.550
+Qtd Bloqueada: 0
+Qtd Total: 3.550
+ 
+Nº chamado: 4418
+ 
+A data do desbloqueio precisa ser com a data de 23/06/2025 e precisamos que o script seja rodado hoje."	Em novo contato da usuária, foi necessario gerar o script Script_23896960_Desbloqueio_Acoes_DataPos-20-06-25_Novo_Ajuste.sql e executá-lo. 
+153704	[SANTANDER] [SAC] [TICKET 23895655/ REDMINE ] -[4417] WH/SAC- DATA DE PROCESSAMENTO - CUST4130	"
+
+UPDATE SACCUSTODIA.RV_DATA_PROC
+SET CL = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,EM = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,FI = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,FU = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,RF = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,RV = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+	,SW = TO_DATE ('06/23/2025', 'MM/DD/YYYY')
+WHERE CODCLI = 'CUST4130';
+
+
+Ajuste executado conforme solicitação
+"	
+153694	[SANTANDER] [SAC] [TICKET 23895655/ REDMINE ] -[4417] WH/SAC- DATA DE PROCESSAMENTO - CUST4130	"Fundo CUST4130 inicia hoje 23/06/2025, porém, fundo está parado na data do dia  11/02/2025.
+
+podem trazer para data, por favor ?
+"	Ajuste executado conforme solicitação
+153594	[SANTANDER] [SAC] [TICKET 23886137/REDMINE 153594] YS - EXCLUSÃO DE OPERAÇÕES DE DEVOLUÇÃO ANTECIPADA	"Erro no processamento de RV.
+Solicitado exclusão das operações em anexo."	script executado
+"	  resultado de uma exportacao de informação do redmine. quero criar um site em streamlit que faz upload de arquivo csv, pdf, coleta esse tipo de informação e dar a resposta colentando as informacoes dos 5 ou 1 chamado com melhor similiaridade, informando o titulo do chamado, cliente e possível solução do problema. usar o modelo de ia llama.
+
+vou rodar o modelo localmente no computador windows, usando o cpu. vou usar o modelo meta-llama/Llama-3.1-8B-Instruct

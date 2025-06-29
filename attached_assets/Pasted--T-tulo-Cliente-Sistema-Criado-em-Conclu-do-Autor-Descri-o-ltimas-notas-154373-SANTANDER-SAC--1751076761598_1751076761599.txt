@@ -1,0 +1,130 @@
+#	Título	Cliente	Sistema	Criado em	Concluído	Autor	Descrição	Últimas notas 
+154373	[SANTANDER] [SAC] [TICKET 23962580/REDMINE 154373] YS - EXCLUSÃO DE OPERAÇÕES DE DEVOLUÇÃO ANTECIPADA	Santander Asset	SAC	27/06/2025 21:36 h	27/06/2025 21:51 h	Marcos Paulo Cioffi	Usuária Francinete entrou em contato via Teams solicitando a exclusão de operações de devolução antecipada conforme arquivo anexo.	Script executado
+154372	[SANTANDER] [SAC] [TICKET 23962511/REDMINE 154372] [4434] WH - ITEM CVM175 SAC WH - Erro na Pfee da classe quando movimento é importado do Passivo	Santander Custódia	SAC	27/06/2025 20:35 h		Marcos Paulo Cioffi	"_**SOLICITACAO DE ATENDIMENTO DIMENSA**_
+
+**TICKET ZENDESK:23962511
+SOLICITANTE CLIENTE:SANTANDER
+DATA DA SOLICITAÇÃO DO CLIENTE:27/06/2025
+TICKET EXTERNO:4434
+MÓDULO:SAC
+TRANSAÇÃO:Relatórios>Clientes>Posição>Carteira Diária
+TÍTULO DA TAREFA:ITEM CVM175 SAC WH - Erro na Pfee da classe quando movimento é importado do Passivo
+DESCRIÇÃO DA SOLICITAÇÃO:**
+Olá Senhores, boa noite!
+Poderiam por favor abrir um chamado para a avaliação do erro abaixo descrito pelo usuário Anderson?
+Descrição: A Pfee importada do JCOT fica ok na subclasse, porém quando vai para a classe a Pfee fica com valor positivo.
+OBS: Pedimos priorização na análise deste item, pois estamos com um cliente a ponto de iniciar um fundo com a estrutura CVM175 e a estrutura deles utilizam PFEE.
+"	
+154358	[ITAÚ] [SAC] [INC18418068] - Importação de Boletas de Ingresso e retirada no modulo de outros,  	Itaú	SAC	27/06/2025 16:44 h		Cibele Gemita Fuentes Lopes 	"_**SOLICITACAO DE ATENDIMENTO DIMENSA**_
+
+**TICKET ZENDESK:23960928
+SOLICITANTE CLIENTE:Itau
+DATA DA SOLICITAÇÃO DO CLIENTE: 26/06
+TICKET EXTERNO:INC18418068
+MÓDULO:Importação
+TRANSAÇÃO:outros
+TÍTULO DA TAREFA:Importação de Boletas de Ingresso e retirada no modulo de outros,
+DESCRIÇÃO DA SOLICITAÇÃO:**Importação de Boletas de Ingresso e retirada no modulo de outros, Sac não esta apresentando erro, quando ocorre movimento em fundos com datas anteriores a data de processamento."	
+154337	[SANTANDER] [SAC] [TICKET 23959264/REDMINE 154337] - Exclusão Dev BTC 0152 - YDUQ3 27.05	Santander Asset	SAC	27/06/2025 15:22 h	27/06/2025 16:01 h	Bruno Visconti Guidotte	"Usuário Odirlei solicitou a exclusão das 2 operações anexos, que estão impactando o processamento do fundo 0152. 
+ 
+Id: 1056293 - Papel: YDUQ3 - Qnt: 1607
+Id: 1056308 - Papel: YDUQ3 - Qnt: 5860"	"Gerado e executado o script
+Script:
+DELETE FROM SAC.SAC_RV_EMPRESTIMO_ACOES
+WHERE ID_MOVIMENTO = 1056293 AND DT_MOVIMENTO = TO_DATE ('06/26/2025', 'MM/DD/YYYY');
+
+DELETE FROM SAC.SAC_RV_EMPRESTIMO_ACOES
+WHERE ID_MOVIMENTO = 1056308 AND DT_MOVIMENTO = TO_DATE ('06/26/2025', 'MM/DD/YYYY');
+
+Script Rollback/Restore:
+INSERT INTO SAC.SAC_RV_EMPRESTIMO_ACOES (ID_MOVIMENTO, DT_MOVIMENTO, ID_OPERACAO_EMPR_ACOES, SG_OPERACAO, IC_TIPO_MOVIMENTO, CLCLI_CD, RVPAP_CD, QT_MOVIMENTADA, IC_COTACAO_LIQUIDACAO, IC_RECEBIMENTO_PERIODICO, SG_PERIODICIDADE, DD_DIAS_RECEBIMENTO, IC_DEVOLUCAO_ANTECIPADA, DT_DEVOLUCAO_ANTECIPADA, RVCOR_CD_AGENTE, RVCOR_CD, VL_TX_COMISSAO, VL_TX_REMUNERACAO, DD_DIAS_PRAZO, DT_VENCIMENTO, IC_MTM, SG_CURVA_MTM, ID_OFERTA, DT_OFERTA, ID_BLOQUEIO, ID_CONTA, ID_MOV_ORIGINAL, SG_STATUS_PROVENTO, ID_MOV_ORIG_PROV, DT_DEPOSITO, DT_EX_PROVENTO, DT_CRED_RECIBO, CD_ESTRATEGIA_MOV, DT_BASE_PROVENTO, ID_MT, ID_MT_SEQ_B, IC_MOV_VINCULADO, ID_MOV_ORIG_VINC, IC_EMPR_COMPULSORIO, IC_EMPR_AUTOMATICO, IC_EMPR_INADIMPLENTE, IC_EMPR_ORIG_INADIMP, ID_MOV_ORIG_INADIMP, SG_CONVERSAO, VL_PGTO_FRACAO, QT_FRACAO, ID_MOTIVO, RVCOR_CD_CUST_FISICA, VL_APR_POS_DTLIQ, VL_APR_NEG_DTLIQ, VL_APR_POS_ACUM_DTLIQ, VL_APR_NEG_ACUM_DTLIQ, VL_VAR_APROP_DTLIQ, RVCOR_CD_ORIGINAL, DT_LIQ_FISICA_IPN, NO_CONTRATO, IC_MOV_ORIG_RENOV_ANTEC, ID_MOV_ORIG_RENOV_ANTEC, SG_MODALIDADE_CONTRATO, IC_TIPO_COMISSAO, VL_FIXO, IC_DIRETO)
+VALUES (1056293, TO_DATE ('06/26/2025', 'MM/DD/YYYY'), 1052828, 'D', 'D', '0152', 'YDUQ3', 1607, 'I', 'N', NULL, 28, 'S', TO_DATE ('06/16/2025', 'MM/DD/YYYY'), 'SANTCCVM', 'SANTCCVM', 0.2745, 1.83, 20, TO_DATE ('07/24/2025', 'MM/DD/YYYY'), 'N', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1052828, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, NULL, 'SANTCCVM', 26949.39, 0, 26949.39, 0, 0, NULL, TO_DATE ('06/27/2025', 'MM/DD/YYYY'), NULL, 'S', NULL, 'RE', 'A', 0, 'N');
+
+INSERT INTO SAC.SAC_RV_EMPRESTIMO_ACOES (ID_MOVIMENTO, DT_MOVIMENTO, ID_OPERACAO_EMPR_ACOES, SG_OPERACAO, IC_TIPO_MOVIMENTO, CLCLI_CD, RVPAP_CD, QT_MOVIMENTADA, IC_COTACAO_LIQUIDACAO, IC_RECEBIMENTO_PERIODICO, SG_PERIODICIDADE, DD_DIAS_RECEBIMENTO, IC_DEVOLUCAO_ANTECIPADA, DT_DEVOLUCAO_ANTECIPADA, RVCOR_CD_AGENTE, RVCOR_CD, VL_TX_COMISSAO, VL_TX_REMUNERACAO, DD_DIAS_PRAZO, DT_VENCIMENTO, IC_MTM, SG_CURVA_MTM, ID_OFERTA, DT_OFERTA, ID_BLOQUEIO, ID_CONTA, ID_MOV_ORIGINAL, SG_STATUS_PROVENTO, ID_MOV_ORIG_PROV, DT_DEPOSITO, DT_EX_PROVENTO, DT_CRED_RECIBO, CD_ESTRATEGIA_MOV, DT_BASE_PROVENTO, ID_MT, ID_MT_SEQ_B, IC_MOV_VINCULADO, ID_MOV_ORIG_VINC, IC_EMPR_COMPULSORIO, IC_EMPR_AUTOMATICO, IC_EMPR_INADIMPLENTE, IC_EMPR_ORIG_INADIMP, ID_MOV_ORIG_INADIMP, SG_CONVERSAO, VL_PGTO_FRACAO, QT_FRACAO, ID_MOTIVO, RVCOR_CD_CUST_FISICA, VL_APR_POS_DTLIQ, VL_APR_NEG_DTLIQ, VL_APR_POS_ACUM_DTLIQ, VL_APR_NEG_ACUM_DTLIQ, VL_VAR_APROP_DTLIQ, RVCOR_CD_ORIGINAL, DT_LIQ_FISICA_IPN, NO_CONTRATO, IC_MOV_ORIG_RENOV_ANTEC, ID_MOV_ORIG_RENOV_ANTEC, SG_MODALIDADE_CONTRATO, IC_TIPO_COMISSAO, VL_FIXO, IC_DIRETO)
+VALUES (1056308, TO_DATE ('06/26/2025', 'MM/DD/YYYY'), 1052701, 'D', 'D', '0152', 'YDUQ3', 5860, 'I', 'N', NULL, 28, 'S', TO_DATE ('06/16/2025', 'MM/DD/YYYY'), 'SANTCCVM', 'SANTCCVM', 0.183, 1.83, 20, TO_DATE ('07/24/2025', 'MM/DD/YYYY'), 'N', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1052701, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, NULL, 'SANTCCVM', 98272.2, 0, 98272.2, -174.790000000001, -174.790000000001, NULL, TO_DATE ('06/27/2025', 'MM/DD/YYYY'), NULL, 'S', NULL, 'RE', 'A', 0, 'N');
+
+"
+154316	[BRADESCO] [SAC] [TICKET 23956887/SSTI 186987] - Operação de Cambio esta indo incorretamente a moeda par Net report	Bradesco	SAC	27/06/2025 13:06 h		Frank De Aquino	Operação de câmbio CB751582 está exportando incorretamente para o site o valor da moeda comprada (Exportação NET REPORT)	
+154303	[BNY] [SAC] [TICKET 22448163 / REDMINE 154303 ] Exportação XML XP Pedras Secas - Tag <opcoesderiv>	BNY Mellon	SAC	27/06/2025 11:53 h		Priscila Machado Teruel	"SOLICITACAO DE ATENDIMENTO DIMENSA
+
+**TICKET ZENDESK: 22448163
+SOLICITANTE CLIENTE:LARISSA
+
+DATA DA SOLICITAÇÃO DO CLIENTE:27/06/2025
+TICKET EXTERNO: Sem INC
+MÓDULO:TABELAS / EXPORTAÇÃO / POSIÇÃO / PADRÃO ANBID
+TRANSAÇÃO:XML 4.01
+TÍTULO DA TAREFA:[BNY] [SAC] [TICKET 22448163 / REDMINE] BooksXML XP Pedras Secas
+DESCRIÇÃO DA SOLICITAÇÃO:
+
+Transação: Tabelas/Exportação/Posição/Padrão Anbid
+Data: 31/07/2024
+VERSÃO Componente YMF_Conciliacao - Versão: 2012.1.230 e atualizado o componente/DLL enviado em 15/04 para correção da tag: 2025.2.1
+
+obs: fundo XP PEDRAS SECAS não aparece a tag e o cliente possui posição vendida do ativo OFC AC - possivelmente o erro para o cliente Pedras Secas é devido a volumetria de posição (a exportação é um pouco demorada)
+
+
+Arquivos de log em anexo.
+
+Att"	"bom dia!
+Zenas, conforme call realizado hoje, com equipe do BNY, mesmo com as atualizações corretas a tag <opcoesderiv>, não foi gerada no XML, ele abortou o processo no meio da geração de todos os ativos.
+Obrigada pela participação no call, foi esclarecedor.
+
+Att,
+
+Priscila Teruel"
+154302	[BRADESCO] [SLM] [TICKET 23955946/SSTI 187127] - Estrutura do XML 5.0 apresenta erro na validação dos arquivos	Bradesco	SAC	27/06/2025 11:51 h		Frank De Aquino	A nova estrutura do XML 5.0 apresenta erro na validação dos arquivos. O erro crítico informado pelo VALIDADOR XML 5.0 indica "violation of PRIMARY KEY constraint 'PK_NET_RPT_XML_ANBIMA_STATUS_5". Parece que ele informa duplicidade de exportação do arquivo e termina não liberando o arquivo no portal Bradesco Custódia.	
+154256	[SANTANDER] [SAC] [ZENDESK 23951648 / ] [4432] WH/SAC - Operações de Rolagem ( Erro 35 e Duplicidade e Desdobramento de Operações )	Santander Custódia	SAC	27/06/2025 08:30 h		Eduardo Jose dos Santos	"Bom dia,
+
+Hoje dia 26/06/25 tivemos operações de Rolagem de Futuros com os ativos (FUT DR1, FUT WD1) sabemos que estes ativos o SAC não trata, com isso temos que excluir as operações originais dos ativos acima mencionado e boletar elas abertas sendo uma Ponta Longa e uma Ponta Curta, no meio do processo de exclusão notamos dois fatos na qual gostaríamos de saber o motivo.
+
+1° - Quando fomos processar um dos fundos com as operações originais FUT DR1 e FUT WD1 o SAC apresentou o erro abaixo e gostaríamos de saber que erro é este e se está correto o comportamento do SAC.
+2° - No momento da exclusão estávamos analisando as operações da rolagem que seriam excluídas para o fundo SFSB0945 e notamos que as operações de Rolagem estavam duplicadas sendo elas Fechadas ou seja como FUT DR1 e FUTWD1, e que também elas desdobraram as operações originais, sendo que no boletaram as operações fechadas, e apos elas terem sidos integradas no SAC elas duplicaram e desdobraram e não são para todos os fundos, só para alguns.
+
+Abaixo vai os prints da tela do FRONT como o gestor boletou e também a tela delas no SAC depois de integradas.
+Precisamos que analisem :
+
+?	""Erro 35""
+?	A Duplicidade e os Desdobramentos das operações de Rolagem Fechadas (FUT DR1, FUT WD1).
+
+Chamado aberto de N° 4432.
+"	
+154252	[SANTANDER] [SAC] [TICKET 23951106/REDMINE 154252] - WH/SAC - ERRO NO PROCESSAMENTO DO FUNDO (CUST4475)	Santander Custódia	SAC	27/06/2025 03:35 h	27/06/2025 05:40 h	Andrea Aparecida da Silva Santos	"_**SOLICITACAO DE ATENDIMENTO DIMENSA**_
+
+**TICKET ZENDESK:23951106
+SOLICITANTE CLIENTE:SANTANDER
+DATA DA SOLICITAÇÃO DO CLIENTE: 27/06/2025
+TICKET EXTERNO:23951106
+MÓDULO: PROCESSAMENTO
+TRANSAÇÃO: PROCESSAMENTO/PROCESSAMENTO DE CLIENTES
+TÍTULO DA TAREFA: WH/SAC - ERRO NO PROCESSAMENTO DO FUNDO (CUST4475)
+DESCRIÇÃO DA SOLICITAÇÃO:
+-- CUSTÓDIA (WH)
+-- CUST4475
+-- ERRO NO PROCESSAMENTO DO FUNDO"	Disponibilizado versão correta para utilização dos usuários.
+154243	[BNP][JCOT][JIRA CZBR2SITADM-1511][TICKET 23827887][REDMINE 154243] Relatórios assíncronos Fundo não cadastrado	BNP	JCOT	26/06/2025 21:22 h		Eduardo Martins Abdalla Bochour	"_**SOLICITACAO DE ATENDIMENTO DIMENSA**_
+
+**TICKET ZENDESK: 23827887
+SOLICITANTE CLIENTE: Ian Neves
+DATA DA SOLICITAÇÃO DO CLIENTE: 13/06/2025
+TICKET EXTERNO: CZBR2SITADM-1511
+MÓDULO: JCOT
+TRANSAÇÃO: TABELAS > CADASTRO > CLIENTE e FUNDO
+TÍTULO DA TAREFA: Relatórios assíncronos Fundo não cadastrado 
+DESCRIÇÃO DA SOLICITAÇÃO:
+
+O cliente apontou que alguns fundos não apareciam para gerar o extrato de posição.
+Analisamos que existe uma inconsistência no cadastro fundo e no cadastro cliente.
+
+**
+
+_**SOLICITACAO DE ATENDIMENTO DIMENSA**_
+
+**TICKET ZENDESK:
+SOLICITANTE CLIENTE:
+DATA DA SOLICITAÇÃO DO CLIENTE:
+TICKET EXTERNO:
+MÓDULO:
+TRANSAÇÃO:
+TÍTULO DA TAREFA:
+DESCRIÇÃO DA SOLICITAÇÃO:**"	

@@ -1,0 +1,60 @@
+import pandas as pd
+import streamlit as st
+import io
+import chardet
+import csv
+from typing import Dict, Any, List, Tuple, Optional
+from utils.file_processor import detect_file_encoding  # Adicione esta linha
+def process_robust_csv(csv_file) -> pd.DataFrame:
+    """
+    Process CSV file with robust encoding and separator detection
+    """
+    try:
+        # Reset file pointer and read raw content
+        csv_file.seek(0)
+        raw_content = csv_file.read()
+        st.info(
+            f"📄 Processando arquivo: {csv_file.name} ({len(raw_content):,} bytes)"
+        )
+        # Detect encoding
+        encoding_info = detect_file_encoding(raw_content)
+        detected_enc = encoding_info.get('detected_encoding', 'utf-8')
+        confidence = encoding_info.get('confidence', 0.0)
+        
+            # Mantenha a mensagem de sucesso desejada
+        rows = metadata.get('rows', 0)
+        cols = metadata.get('columns', 0)
+                # Mantenha a mensagem de sucesso desejada
+        st.success(
+            f"🎉 CSV processado com sucesso! {rows} linhas, {cols} colunas"
+        )
+        break
+        else:
+            error_msg = metadata.get('error', 'DataFrame vazio')
+            st.warning(f"❌ Falhou com separador '{separator}': {error_msg}")
+
+        if df is None or len(df) == 0:
+            st.error("❌ Não foi possível processar o CSV")
+            with st.expander("🔍 Preview do arquivo para debug"):
+                st.code(decoded_content[:1000])
+            raise ValueError("Falha ao processar CSV com todos os separadores testados")
+
+        # Detalhes do processamento
+        if success_metadata:
+            with st.expander("✅ Detalhes do processamento"):
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.write("**Parâmetros:**")
+                    st.write(f"- Encoding: {used_encoding}")
+                    st.write(f"- Separador: '{success_metadata.get('separator', 'N/A')}'")
+                    st.write(f"- Linhas: {success_metadata.get('rows', 0):,}")
+                    st.write(f"- Colunas: {success_metadata.get('columns', 0)}")
+
+                with col2:
+                    st.write("**Colunas encontradas:**")
+                    for col in success_metadata.get('column_names', []):
+                        st.write(f"- {col}")
+
+    except Exception as e:
+        st.error(f"❌ Erro ao processar o arquivo CSV: {str(e)}")
+        raise

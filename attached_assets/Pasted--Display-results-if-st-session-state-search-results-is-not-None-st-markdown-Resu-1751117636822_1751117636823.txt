@@ -1,0 +1,124 @@
+# Display results
+if st.session_state.search_results is not None:
+    st.markdown("---")
+
+    # Results header
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        st.header("📋 Chamados Similares")
+        st.caption(f"{len(st.session_state.search_results)} resultados")
+
+    with col2:
+        sort_option = st.selectbox(
+            "🔄 Ordenado por relevância",
+            ["Relevância", "Data de criação", "Responsável"],
+            index=0)
+
+    # Display results
+    for idx, result in enumerate(st.session_state.search_results):
+        similarity_score = result['similarity_score']
+        ticket_data = result['ticket_data']
+
+        # Determine similarity color
+        if similarity_score >= 0.8:
+            similarity_color = "🟢"
+            similarity_label = "Alta Similaridade"
+        elif similarity_score >= 0.6:
+            similarity_color = "🔵"
+            similarity_label = "Boa Similaridade"
+        else:
+            similarity_color = "🟡"
+            similarity_label = "Similaridade Moderada"
+
+        # Create result card
+        with st.container():
+            st.markdown(f"""
+            <div style="
+                border: 1px solid #e0e0e0; 
+                border-radius: 8px; 
+                padding: 20px; 
+                margin: 10px 0;
+                background-color: #fafafa;
+            ">
+            """,
+                        unsafe_allow_html=True)
+
+            # Card header
+            col1, col2 = st.columns([3, 1])
+
+            with col1:
+                st.markdown(
+                    f"### {similarity_color} {ticket_data.get('subject', 'Sem assunto')}"
+                )
+                st.markdown(
+                    f"**📌 Assunto:** {ticket_data.get('subject', 'N/A')}")
+
+            with col2:
+                st.markdown(
+                    f"**{similarity_color} {int(similarity_score * 100)}%**")
+                st.caption(similarity_label)
+
+            # Card content
+            col1, col2 = st.columns(2)
+
+            with col1:
+                description = ticket_data.get('description', 'N/A')
+                if description and str(description).strip() and str(
+                        description) != 'N/A':
+                    desc_text = str(description)[:200]
+                    if len(str(description)) > 200:
+                        desc_text += "..."
+                    st.markdown(f"**📝 Descrição:** {desc_text}")
+                else:
+                    st.markdown("**📝 Descrição:** Não disponível")
+
+                st.markdown(f"**🆔 ID:** #{ticket_data.get('id', 'N/A')}")
+                st.markdown(f"**👤 Autor:** {ticket_data.get('author', 'N/A')}")
+                st.markdown(
+                    f"**🏢 Cliente:** {ticket_data.get('client', 'N/A')}")
+
+            with col2:
+                st.markdown(
+                    f"**💻 Sistema:** {ticket_data.get('system', 'N/A')}")
+                created_date = ticket_data.get('created_date', 'N/A')
+                if created_date and str(created_date) != 'N/A':
+                    # Format date if it's a timestamp
+                    try:
+                        if 'Timestamp' in str(type(created_date)):
+                            created_date = created_date.strftime(
+                                '%Y-%m-%d %H:%M')
+                        elif len(str(created_date)) > 20:
+                            created_date = str(created_date)[:19]
+                    except:
+                        pass
+                st.markdown(f"**📅 Criado em:** {created_date}")
+
+                # Show solution if available
+                solution = ticket_data.get('solution', '')
+                if solution and str(solution).strip() and str(
+                        solution) != 'N/A':
+                    solution_text = str(solution)[:150]
+                    if len(str(solution)) > 150:
+                        solution_text += "..."
+                    st.markdown(f"**✅ Solução:** {solution_text}")
+
+                # Show source type for PDF files
+                if ticket_data.get('source') == 'PDF':
+                    st.markdown(
+                        f"**📄 Fonte:** Documento PDF ({ticket_data.get('pages', 'N/A')} páginas)"
+                    )
+
+                # Redmine link (only for CSV data)
+                ticket_id = ticket_data.get('id', '')
+                if ticket_id and ticket_data.get('source') != 'PDF' and str(
+                        ticket_id).isdigit():
+                    redmine_url = f"https://redmine.totvs.amplis.com.br/issues/{ticket_id}"
+                    st.markdown(f"**🔗 [Ver no Redmine]({redmine_url})**")
+
+            st.markdown("</div>", unsafe_allow_html=True)
+
+# Show instructions if no data loaded
+if st.session_state.tickets_data is None:
+    st.info(
+        "👆 Faça upload de um arquivo CSV com dados do Redmine para começar a busca por similaridade."
+    )
