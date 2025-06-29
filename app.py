@@ -29,7 +29,7 @@ with col2:
 # User info in top right
 st.markdown("""
 <div style="position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 10px;">
-    <span>Feito com ❤️ por Saulo Costa</span>
+    <span>👤 Analista</span>
 </div>
 """,
             unsafe_allow_html=True)
